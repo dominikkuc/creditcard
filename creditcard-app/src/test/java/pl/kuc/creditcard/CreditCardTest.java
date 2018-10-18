@@ -15,6 +15,10 @@ public class CreditCardTest {
     
     @Test
     public void rejectWithdrawOverLimit() {
+        CreditCard card = new CreditCard();
+        card.refund(3000);
+        card.assignLimit(2000);
+        Assert.assert card.withdraw(3000);
         
     }
 }
