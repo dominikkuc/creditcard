@@ -12,4 +12,9 @@ public class CreditCardTest {
         
         Assert.assertTrue(card.getLimit() == 2000);
     }
+    
+    @Test
+    public void rejectWithdrawOverLimit() {
+        
+    }
 }
