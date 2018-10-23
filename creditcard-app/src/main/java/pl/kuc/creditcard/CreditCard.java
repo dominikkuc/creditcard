@@ -1,15 +1,18 @@
 package pl.kuc.creditcard;
 
+import pl.kuc.creditcard.exceptions.CardBlockedException;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
 public class CreditCard {
     private double limit;
     private double balance;
+    private boolean blockade;
 
     public CreditCard() {
-        limit = 0;
+        limit = 1000;
         balance = 0;
+        blockade = false;
     }
 
     public void assignLimit(double limit) {
@@ -24,7 +27,10 @@ public class CreditCard {
         balance += funds;
     }
 
-    public void withdraw(double funds) throws WithdrawOverLimitException, WithdrawOverBalanceException {
+    public void withdraw(double funds) throws WithdrawOverLimitException, WithdrawOverBalanceException, CardBlockedException {
+        if (blockade) {
+            throw new CardBlockedException();
+        }
         if (funds > limit) {
             throw new WithdrawOverLimitException(limit, funds);
         }
@@ -32,5 +38,13 @@ public class CreditCard {
             throw new WithdrawOverBalanceException(balance, funds);
         }
         balance -= funds;
+    }
+
+    public void lock() {
+        blockade = true;
+    }
+
+    public void unlock() {
+        blockade = false;
     }
 }

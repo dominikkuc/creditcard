@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import pl.kuc.creditcard.exceptions.CardBlockedException;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
@@ -21,7 +22,6 @@ public class CreditCardTest {
     public void rejectWithdrawOverLimit() throws Exception {
         CreditCard card = new CreditCard();
         card.refund(3000);
-        card.assignLimit(2000);
         card.withdraw(3000);
     }
 
@@ -29,7 +29,14 @@ public class CreditCardTest {
     public void rejectWithdrawOverBalance() throws Exception {
         CreditCard card = new CreditCard();
         card.refund(500);
-        card.assignLimit(2000);
-        card.withdraw(1000);
+        card.withdraw(900);
+    }
+
+    @Test(expected = CardBlockedException.class)
+    public void rejectWithdrawCardBlocked() throws Exception {
+        CreditCard card = new CreditCard();
+        card.refund(1000);
+        card.lock();
+        card.withdraw(500);
     }
 }
