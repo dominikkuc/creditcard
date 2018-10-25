@@ -3,6 +3,7 @@ package pl.kuc.creditcard;
 import org.junit.Assert;
 import org.junit.Test;
 import pl.kuc.creditcard.exceptions.CardBlockedException;
+import pl.kuc.creditcard.exceptions.LimitLowerThan100Exveption;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
@@ -11,8 +12,11 @@ public class CreditCardTest {
     public void assignCreditLimitToCard() {
         CreditCard card = new CreditCard();
 
-        card.assignLimit(2000);
+        try {
+            card.assignLimit(2000);
+        } catch (LimitLowerThan100Exveption e) {
 
+        }
         Assert.assertTrue(card.getLimit() == 2000);
     }
 
@@ -36,5 +40,11 @@ public class CreditCardTest {
         card.refund(1000);
         card.lock();
         card.withdraw(500);
+    }
+
+    @Test(expected = LimitLowerThan100Exveption.class)
+    public void reassignLimitLowerThan100() throws Exception {
+        CreditCard card = new CreditCard();
+        card.assignLimit(20);
     }
 }
