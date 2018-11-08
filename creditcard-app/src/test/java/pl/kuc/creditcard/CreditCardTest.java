@@ -8,9 +8,11 @@ import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
 public class CreditCardTest {
+    private static final String id = "1234";
+
     @Test
     public void assignCreditLimitToCard() {
-        CreditCard card = new CreditCard();
+        CreditCard card = new CreditCard(id);
 
         try {
             card.assignLimit(2000);
@@ -22,21 +24,21 @@ public class CreditCardTest {
 
     @Test(expected = WithdrawOverLimitException.class)
     public void rejectWithdrawOverLimit() throws Exception {
-        CreditCard card = new CreditCard();
+        CreditCard card = new CreditCard(id);
         card.refund(3000);
         card.withdraw(3000);
     }
 
     @Test(expected = WithdrawOverBalanceException.class)
     public void rejectWithdrawOverBalance() throws Exception {
-        CreditCard card = new CreditCard();
+        CreditCard card = new CreditCard(id);
         card.refund(500);
         card.withdraw(900);
     }
 
     @Test(expected = CardBlockedException.class)
     public void rejectWithdrawCardBlocked() throws Exception {
-        CreditCard card = new CreditCard();
+        CreditCard card = new CreditCard(id);
         card.refund(1000);
         card.lock();
         card.withdraw(500);

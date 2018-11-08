@@ -9,12 +9,14 @@ public class CreditCard {
     private double limit;
     private double balance;
     private boolean blockade;
+    private String id;
     private double debt;
 
-    public CreditCard() {
+    public CreditCard(String id) {
         limit = 1000;
         balance = 0;
         blockade = false;
+        this.id = id;
         debt = 0;
     }
 
@@ -29,6 +31,10 @@ public class CreditCard {
         return limit;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+  
     public void getLoan(double value) {
         balance += value;
         debt += value;
@@ -55,5 +61,13 @@ public class CreditCard {
 
     public void lock() {
         blockade = true;
+    }
+  
+    public void unlock() {
+        blockade = false;
+    }
+
+    public String getId() {
+        return id;
     }
 }
