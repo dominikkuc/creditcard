@@ -8,11 +8,13 @@ public class CreditCard {
     private double limit;
     private double balance;
     private boolean blockade;
+    private String id;
 
-    public CreditCard() {
+    public CreditCard(String id) {
         limit = 1000;
         balance = 0;
         blockade = false;
+        this.id = id;
     }
 
     public void assignLimit(double limit) {
@@ -21,6 +23,10 @@ public class CreditCard {
 
     public double getLimit() {
         return limit;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public void refund(double funds) {
@@ -46,5 +52,9 @@ public class CreditCard {
 
     public void unlock() {
         blockade = false;
+    }
+
+    public String getId() {
+        return id;
     }
 }
