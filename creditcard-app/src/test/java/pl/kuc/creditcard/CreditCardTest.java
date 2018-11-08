@@ -47,4 +47,15 @@ public class CreditCardTest {
         CreditCard card = new CreditCard();
         card.assignLimit(20);
     }
+
+    @Test
+    public void getLoan() {
+
+        CreditCard card = new CreditCard();
+
+        card.refund(300);
+        card.getLoan(200);
+
+        Assert.assertTrue(card.balance == 500);
+    }
 }

@@ -9,11 +9,13 @@ public class CreditCard {
     private double limit;
     private double balance;
     private boolean blockade;
+    private double debt;
 
     public CreditCard() {
         limit = 1000;
         balance = 0;
         blockade = false;
+        debt = 0;
     }
 
     public void assignLimit(double limit) throws LimitLowerThan100Exveption {
@@ -25,6 +27,11 @@ public class CreditCard {
 
     public double getLimit() {
         return limit;
+    }
+
+    public void getLoan(double value) {
+        balance += value;
+        debt += value;
     }
 
     public void refund(double funds) {
@@ -43,6 +50,8 @@ public class CreditCard {
         }
         balance -= funds;
     }
+
+
 
     public void lock() {
         blockade = true;
