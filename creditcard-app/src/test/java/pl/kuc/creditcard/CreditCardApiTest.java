@@ -2,6 +2,9 @@ package pl.kuc.creditcard;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.kuc.creditcard.exceptions.CardBlockedException;
+import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
+import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
 import java.math.BigDecimal;
 
@@ -12,9 +15,9 @@ public class CreditCardApiTest {
     private CreditCardApi api;
 
     @Test
-    public void withdrawFromCard() {
-        thereIsCreditCardApi();
+    public void withdrawFromCard() throws WithdrawOverBalanceException, CardBlockedException, WithdrawOverLimitException {
         thereIsCreditCardRepository();
+        thereIsCreditCardApi();
         thereIsCardWithId(id);
 
         api.withdraw(id, 20);
@@ -36,12 +39,12 @@ public class CreditCardApiTest {
     }
 
     private void thereIsCreditCardApi() {
-        this.api = new CreditCardApi();
+        this.api = new CreditCardApi(repository);
     }
 
     private void thereIsCardWithId(String id) {
         CreditCard c = new CreditCard(id);
-        c.assignLimit(initialBalance);
+        c.refund(initialBalance);
         repository.add(c);
     }
 }
