@@ -1,12 +1,13 @@
-package pl.kuc.creditcard;
+package pl.kuc;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.kuc.creditcard.CreditCard;
+import pl.kuc.creditcard.CreditCardApi;
+import pl.kuc.creditcard.CreditCardRepository;
 import pl.kuc.creditcard.exceptions.CardBlockedException;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
-
-import java.math.BigDecimal;
 
 public class CreditCardApiTest {
     private static final double initialBalance = 200;

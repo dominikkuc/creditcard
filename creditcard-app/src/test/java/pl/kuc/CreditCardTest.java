@@ -1,7 +1,8 @@
-package pl.kuc.creditcard;
+package pl.kuc;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.kuc.creditcard.CreditCard;
 import pl.kuc.creditcard.exceptions.CardBlockedException;
 import pl.kuc.creditcard.exceptions.LimitLowerThan100Exveption;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
@@ -13,12 +14,7 @@ public class CreditCardTest {
     @Test
     public void assignCreditLimitToCard() {
         CreditCard card = new CreditCard(id);
-
-        try {
-            card.assignLimit(2000);
-        } catch (LimitLowerThan100Exveption e) {
-
-        }
+        card.assignLimit(2000);
         Assert.assertTrue(card.getLimit() == 2000);
     }
 
@@ -46,18 +42,7 @@ public class CreditCardTest {
 
     @Test(expected = LimitLowerThan100Exveption.class)
     public void reassignLimitLowerThan100() throws Exception {
-        CreditCard card = new CreditCard();
+        CreditCard card = new CreditCard("1234");
         card.assignLimit(20);
-    }
-
-    @Test
-    public void getLoan() {
-
-        CreditCard card = new CreditCard();
-
-        card.refund(300);
-        card.getLoan(200);
-
-        Assert.assertTrue(card.balance == 500);
     }
 }

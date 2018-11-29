@@ -1,4 +1,4 @@
-package pl.kuc.creditcard;
+package pl.kuc;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
