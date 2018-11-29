@@ -50,10 +50,6 @@ public class CreditCard {
         blockade = true;
     }
 
-    public void unlock() {
-        blockade = false;
-    }
-
     public String getId() {
         return id;
     }
