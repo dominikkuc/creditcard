@@ -1,6 +1,7 @@
 package pl.kuc.creditcard;
 
 import pl.kuc.creditcard.exceptions.CardBlockedException;
+import pl.kuc.creditcard.exceptions.LimitLowerThan100Exveption;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
 
@@ -17,7 +18,10 @@ public class CreditCard {
         this.id = id;
     }
 
-    public void assignLimit(double limit) {
+    public void assignLimit(double limit) throws LimitLowerThan100Exveption {
+        if (limit < 100) {
+            throw new LimitLowerThan100Exveption(limit);
+        }
         this.limit = limit;
     }
 

@@ -14,7 +14,11 @@ public class CreditCardTest {
     @Test
     public void assignCreditLimitToCard() {
         CreditCard card = new CreditCard(id);
-        card.assignLimit(2000);
+        try {
+            card.assignLimit(2000);
+        } catch (LimitLowerThan100Exveption limitLowerThan100Exveption) {
+            limitLowerThan100Exveption.printStackTrace();
+        }
         Assert.assertTrue(card.getLimit() == 2000);
     }
 
