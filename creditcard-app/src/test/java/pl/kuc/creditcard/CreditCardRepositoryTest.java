@@ -1,4 +1,4 @@
-package pl.kuc;
+package pl.kuc.creditcard;
 
 import org.junit.Assert;
 import org.junit.Test;
