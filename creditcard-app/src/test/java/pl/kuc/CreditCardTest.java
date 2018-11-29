@@ -1,7 +1,8 @@
-package pl.kuc.creditcard;
+package pl.kuc;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.kuc.creditcard.CreditCard;
 import pl.kuc.creditcard.exceptions.CardBlockedException;
 import pl.kuc.creditcard.exceptions.WithdrawOverBalanceException;
 import pl.kuc.creditcard.exceptions.WithdrawOverLimitException;
